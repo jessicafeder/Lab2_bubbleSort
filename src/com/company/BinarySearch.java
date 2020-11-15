@@ -10,7 +10,7 @@ public class BinarySearch {
         if (root == null) {
             root = newNode;
 
-        } else {    
+        } else {
             Node focusNode = root;
 
             Node parent;
