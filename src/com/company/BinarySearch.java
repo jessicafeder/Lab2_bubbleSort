@@ -34,6 +34,38 @@ public class BinarySearch {
         }
     }
 
+    public Node searchNodeBeforeUse(Node node, int x) {
+        if (node == null) {
+            return null;
+        } else if (node.leftChild == null && node.rightChild == null) {
+            return node;
+        } else if (node.leftChild == null) {
+            if (x == node.rightChild.key) {
+                return node;
+            } else {
+                return searchNodeBeforeUse(node.rightChild, x);
+            }
+        } else if (node.rightChild == null) {
+            if (x == node.leftChild.key) {
+                return node;
+            } else {
+                return searchNodeBeforeUse(node.leftChild, x);
+            }
+        } else {
+            if (x == node.leftChild.key || x == node.rightChild.key) {
+                return node;
+            } else {
+                if (x > node.key) {
+                    return searchNodeBeforeUse(node.rightChild, x);
+                } else if (x < node.key) {
+                    return searchNodeBeforeUse(node.leftChild, x);
+                } else {
+                    return node;
+                }
+            }
+        }
+    }
+
     public void inOrderTraverseTree(Node focusNode) {
         if (focusNode != null) {
             inOrderTraverseTree(focusNode.leftChild);
@@ -57,6 +89,14 @@ public class BinarySearch {
             PostorderTraverseTree(focusNode.leftChild);
             PostorderTraverseTree(focusNode.rightChild);
             System.out.println(focusNode);
+        }
+    }
+
+    public void ReverseInOrderTraverseTree(Node focusNode) {
+        if (focusNode != null) {
+            ReverseInOrderTraverseTree(focusNode.rightChild);
+            System.out.println(focusNode.key);
+            ReverseInOrderTraverseTree(focusNode.leftChild);
         }
     }
 
@@ -108,6 +148,7 @@ public class BinarySearch {
         theTree.addNode(110,"Child 7");
         theTree.addNode(108,"Child 8");
         theTree.addNode(111,"Child 9");
+        System.out.println(theTree.findNode(30)); // döpt get method till findNode
 
         //theTree.PreorderTraverseTree(theTree.root);
         //theTree.inOrderTraverseTree(theTree.root);
