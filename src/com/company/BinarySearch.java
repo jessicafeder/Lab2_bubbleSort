@@ -34,6 +34,14 @@ public class BinarySearch {
         }
     }
 
+    public void remove(Node root, int x) {
+        if (x == this.root.key && this.root.leftChild == null && this.root.rightChild == null) {
+            this.root = null;
+        } else {
+            remove(this.root, x);
+        }
+    }
+
     public Node searchNodeBeforeUse(Node node, int x) {
         if (node == null) {
             return null;
